@@ -50,11 +50,11 @@ const AthleteAssessments: React.FC = () => {
       <IonHeader>
         <IonToolbar color="primary">
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/athletes" />
+            <IonBackButton defaultHref="/tabs/athlete-list" />
           </IonButtons>
           <IonTitle>{athlete.name}</IonTitle>
           <IonButtons slot="end">
-            <IonButton href={`/athlete/${id}/new`}>
+            <IonButton href={`/tabs/athlete-list/assessment/${id}/new`}>
               + Assessment
             </IonButton>
           </IonButtons>
@@ -69,7 +69,7 @@ const AthleteAssessments: React.FC = () => {
               button
               detail
               lines="full"
-              href={`/assessment/${assessment.id}`}
+              href={`/tabs/athlete-list/assessment/${assessment.id}`}
             >
               <IonLabel>
                 <h2>{assessment.date}</h2>
@@ -90,7 +90,7 @@ const AthleteAssessments: React.FC = () => {
           )}
         </IonList>
         <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton  href={`/athlete/${id}/new`}>
+          <IonFabButton  href={`/tabs/athlete-list/assessment/${id}/new`}>
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>

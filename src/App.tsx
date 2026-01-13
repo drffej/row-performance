@@ -42,6 +42,7 @@ import './theme/variables.css';
 import './App.css';
 
 import { AssessmentProvider } from './state/AssessmentContext';
+import SplashScreen from './components/SplashScreen';
 
 /* Lazy-loaded pages */
 const AssessmentPage = lazy(() => import('./pages/AssessmentPage'));
@@ -59,38 +60,39 @@ const App: React.FC = () => (
         <IonTabs>
 
           <IonRouterOutlet>
-            <Suspense fallback={null}>
+            <Suspense fallback={<SplashScreen />}>
               <Switch>
                 {/* Redirect from root */}
-                <Route exact path="/" render={() => <Redirect to="/assessment" />} />
+                <Route exact path="/" render={() => <Redirect to="/tabs/assessment" />} />
 
                 {/* Pages */}
-                <Route exact path="/athlete-list" component={AthleteList} />
-                <Route exact path="/assessment" component={AssessmentPage} />
-                <Route exact path="/coach-assessment" component={CoachAssessmentPage} />
-                <Route exact path="/radar" component={RadarPage} />
-                <Route exact path="/athlete/:id" component={AthleteAssessments} />
+                <Route exact path="/tabs/athlete-list" component={AthleteList} />
+                <Route exact path="/tabs/assessment" component={AssessmentPage} />
+                <Route exact path="/tabs/coach-assessment" component={CoachAssessmentPage} />
+                <Route exact path="/tabs/radar" component={RadarPage} />
+                <Route exact path="/tabs/athlete-list/assessment/:id" component={AthleteAssessments} />
+                <Route exact path="/tabs/athlete-list/assessment/:id/new" component={AssessmentPage} />
               </Switch>
             </Suspense>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="primary">
-            <IonTabButton tab="athletes" href="/athlete-list">
+            <IonTabButton tab="athletes" href="/tabs/athlete-list">
               <IonIcon icon={peopleOutline} />
               <IonLabel>Athletes</IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="assessment" href="/assessment">
+            <IonTabButton tab="assessment" href="/tabs/assessment">
               <IonIcon icon={clipboardOutline} />
               <IonLabel>Assessment</IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="coach" href="/coach-assessment">
+            <IonTabButton tab="coach" href="/tabs/coach-assessment">
               <IonIcon icon={personOutline} />
               <IonLabel>Coach</IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="radar" href="/radar">
+            <IonTabButton tab="radar" href="/tabs/radar">
               <IonIcon icon={trailSignOutline} />
               <IonLabel>Radar</IonLabel>
             </IonTabButton>

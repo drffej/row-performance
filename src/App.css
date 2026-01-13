@@ -61,40 +61,47 @@ ion-segment-content:nth-of-type(2) {
     color: white;
 }
 
-.weatherGrid {
-  padding-left: 0px;
-  padding-right: 0px;
-  --ion-grid-padding: 0px;
-  --ion-grid-columns: 22;
+
+
+
+ion-range::part(tick) {
+  background: #a2d2ff;
 }
 
-.xweatherGrid ion-row {
-  flex-wrap: nowrap; /* keep row aligned */
+ion-range::part(tick-active) {
+  background: #bde0fe;
 }
 
-.weatherGrid ion-col {
-  padding: 4px;
+ion-range::part(pin) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--ion-color-hotcoral);
+  color: #fff;
+
+  border-radius: 50%;
+  transform: scale(1.01);
+
+  top: -20px;
+
+  min-width: 28px;
+  height: 28px;
+  transition: transform 120ms ease, background 120ms ease;
 }
 
-.weatherGrid .headerRow {
-
-  background: var(--ion-color-light, #fff);
-  z-index: 10;
-  font-weight: bold;
+ion-range::part(pin)::before {
+  content: none;
 }
 
-
-.xweatherGrid ion-col.grow {
-  flex: 1 1 auto;   /* stretch if needed */
+ion-range::part(knob) {
+  background: var(--ion-color-hotcoral);
 }
 
-.xweatherGrid ion-col {
-  flex: 0 0 auto;   /* shrink to fit content */
-  padding: 4px;
-  text-align: center;
-}
-.xweatherGrid ion-col.grow {
-  flex: 1 1 auto;   /* stretch only if needed */
+ion-range::part(bar) {
+  background: #a2d2ff;
 }
 
-
+ion-range::part(bar-active) {
+  background: #bde0fe;
+}

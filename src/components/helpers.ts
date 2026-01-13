@@ -19,7 +19,7 @@ function startAssessment(athleteId : string, notesWentWell = '', notesFocus = ''
   const criteria = loadJSON(CRITERIA_KEY);
 
   const assessmentId = `assessment-${Date.now()}`;
-  const results = criteria.map(c => ({
+  const results = criteria.map((c: any) => ({
     criteria_id: c.id,
     athlete_score: null,
     coach_score: null,
@@ -43,16 +43,16 @@ function startAssessment(athleteId : string, notesWentWell = '', notesFocus = ''
 // List assessments, optionally filtered by athleteId
 function listAssessments(athleteId = null) {
   const assessments = loadJSON(ASSESSMENTS_KEY);
-  return athleteId ? assessments.filter(a => a.athlete_id === athleteId) : assessments;
+  return athleteId ? assessments.filter((a: any) => a.athlete_id === athleteId) : assessments;
 }
 // Update assessment result
 // athleteScore and coachScore can be null to skip updating
 function updateAssessmentResult(assessmentId: string, criteriaId : string, athleteScore = null, coachScore = null, athleteComment = '', coachComment = '') {
   const assessments = loadJSON(ASSESSMENTS_KEY);
-  const assessment = assessments.find(a => a.id === assessmentId);
+  const assessment = assessments.find((a: any) => a.id === assessmentId);
   if (!assessment) return false;
 
-  const result = assessment.results.find(r => r.criteria_id === criteriaId);
+  const result = assessment.results.find((r: any) => r.criteria_id === criteriaId);
   if (!result) return false;
 
   if (athleteScore !== null) result.athlete_score = athleteScore;

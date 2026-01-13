@@ -101,7 +101,7 @@ const AthleteList: React.FC = () => {
           {athletes.filter(filterAthlete).map(athlete => {
             const stats = getAthleteStats(athlete.id);
             return (
-              <IonItem key={athlete.id} button detail={true} lines="full" href={`/athlete/${athlete.id}`}>
+              <IonItem key={athlete.id} button detail={true} lines="full" href={`/tabs/athlete-list/assessment/${athlete.id}`}>
                 <AvatarItem name={athlete.name} />
                 <IonLabel>
                   <h2>{athlete.name}</h2>

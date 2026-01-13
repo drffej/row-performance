@@ -30,17 +30,19 @@ export const AttributeSlider: React.FC<Props> = ({
         <h2>{attribute.label}</h2>
         <p>{attribute.description}</p>
         <small>{guidance}</small>
-      </IonLabel>
-
-      <IonRange
+        <IonRange
         min={attribute.scale.min}
         max={attribute.scale.max}
         step={attribute.scale.step}
         value={value}
         snaps
         ticks
+        pin={true}
         onIonChange={e => onChange(e.detail.value as number)}
       />
+      </IonLabel>
+
+      
     </IonItem>
   );
 };
