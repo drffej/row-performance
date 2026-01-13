@@ -1,0 +1,100 @@
+
+
+ion-tab-bar {
+	--background: var(--ion-color-primary);
+}
+  
+ion-tab-button {
+	--color: #d3d8db;
+	--color-selected: var(--ion-color-hotcoral)
+}
+
+ion-item {
+  --detail-icon-color: var(--ion-color-hotcoral); /* or any CSS color */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: underline;
+}
+a:hover {
+  color: #535bf2;
+}
+
+.input-otp-fill-solid.otpCustom {
+  --border-color: var(--ion-color-tertiary);
+  --background: white;
+}
+
+.fade-loading .loading-wrapper {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-loading.ion-loading-visible .loading-wrapper {
+  opacity: 1;
+}
+
+ion-segment-content:nth-of-type(1) {
+  background: lightblue;
+}
+ion-segment-content:nth-of-type(2) {
+  background: var(--ion-color-tertiary);
+}
+
+.linkStyle {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: underline;
+}
+
+.button-flow {
+  display: flex;
+  flex-wrap: wrap;   /* 🔑 buttons wrap onto new lines */
+  gap: 8px;          /* spacing between buttons */
+  padding: 4px 0;    /* optional breathing room */
+}
+
+.colorRow {
+    background-color: var(--ion-color-tertiary);
+    color: white;
+}
+
+.weatherGrid {
+  padding-left: 0px;
+  padding-right: 0px;
+  --ion-grid-padding: 0px;
+  --ion-grid-columns: 22;
+}
+
+.xweatherGrid ion-row {
+  flex-wrap: nowrap; /* keep row aligned */
+}
+
+.weatherGrid ion-col {
+  padding: 4px;
+}
+
+.weatherGrid .headerRow {
+
+  background: var(--ion-color-light, #fff);
+  z-index: 10;
+  font-weight: bold;
+}
+
+
+.xweatherGrid ion-col.grow {
+  flex: 1 1 auto;   /* stretch if needed */
+}
+
+.xweatherGrid ion-col {
+  flex: 0 0 auto;   /* shrink to fit content */
+  padding: 4px;
+  text-align: center;
+}
+.xweatherGrid ion-col.grow {
+  flex: 1 1 auto;   /* stretch only if needed */
+}
+
+

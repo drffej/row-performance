@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { clipboardOutline, ellipse, personOutline, square, trailSignOutline, triangle } from 'ionicons/icons';
+import { clipboardOutline, ellipse, peopleOutline, personOutline, square, trailSignOutline, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -48,7 +48,9 @@ import { AssessmentProvider } from './state/AssessmentContext';
 import AssessmentPage from './pages/AssessmentPage';
 import CoachAssessmentPage from './pages/CoachAssessmentPage';
 import RadarPage from './pages/RadarPage';
-
+import AthleteList from './pages/AthleteList';
+import './App.css';
+import AthleteAssessments from './pages/AthleteAssessments';
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -63,14 +65,19 @@ const App: React.FC = () => (
             <Route exact path="/">
               <Redirect to="/assessment" />
             </Route>
-
+            <Route exact path ="/athlete-list" component={AthleteList} />
             <Route exact path="/assessment" component={AssessmentPage} />
             <Route exact path="/coach-assessment" component={CoachAssessmentPage} />
             <Route exact path="/radar" component={RadarPage} />
+            <Route exact path="/athlete/:id" component={AthleteAssessments} />
           </IonRouterOutlet>
           </Switch>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        <IonTabBar slot="bottom" color="primary">
+          <IonTabButton tab="athletes" href="/athlete-list">
+            <IonIcon aria-hidden="true" icon={peopleOutline} />
+            <IonLabel>Atheletes</IonLabel>
+          </IonTabButton>
           <IonTabButton tab="tab1" href="/assessment">
             <IonIcon aria-hidden="true" icon={clipboardOutline} />
             <IonLabel>Assessment</IonLabel>
