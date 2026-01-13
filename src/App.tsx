@@ -1,3 +1,4 @@
+// app/src/App.tsx
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
@@ -7,20 +8,25 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { clipboardOutline, peopleOutline, personOutline, trailSignOutline } from 'ionicons/icons';
+import {
+  clipboardOutline,
+  peopleOutline,
+  personOutline,
+  trailSignOutline,
+} from 'ionicons/icons';
 
-/* Core CSS required for Ionic components to work properly */
+import { Suspense, lazy } from 'react';
+
+/* Core CSS */
 import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
-/* Optional CSS utils that can be commented out */
+/* Optional utilities */
 import '@ionic/react/css/padding.css';
 import '@ionic/react/css/float-elements.css';
 import '@ionic/react/css/text-alignment.css';
@@ -28,68 +34,70 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
+/* Dark mode */
 import '@ionic/react/css/palettes/dark.system.css';
 
-/* Theme variables */
+/* Theme */
 import './theme/variables.css';
-import { AssessmentProvider } from './state/AssessmentContext';
-import AssessmentPage from './pages/AssessmentPage';
-import CoachAssessmentPage from './pages/CoachAssessmentPage';
-import RadarPage from './pages/RadarPage';
-import AthleteList from './pages/AthleteList';
 import './App.css';
-import AthleteAssessments from './pages/AthleteAssessments';
+
+import { AssessmentProvider } from './state/AssessmentContext';
+
+/* Lazy-loaded pages */
+const AssessmentPage = lazy(() => import('./pages/AssessmentPage'));
+const CoachAssessmentPage = lazy(() => import('./pages/CoachAssessmentPage'));
+const RadarPage = lazy(() => import('./pages/RadarPage'));
+const AthleteList = lazy(() => import('./pages/AthleteList'));
+const AthleteAssessments = lazy(() => import('./pages/AthleteAssessments'));
+
 setupIonicReact();
 
 const App: React.FC = () => (
-  
   <IonApp>
     <AssessmentProvider>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Switch>
+      <IonReactRouter>
+        <IonTabs>
+
           <IonRouterOutlet>
-            <Route exact path="/">
-              <Redirect to="/assessment" />
-            </Route>
-            <Route exact path ="/athlete-list" component={AthleteList} />
-            <Route exact path="/assessment" component={AssessmentPage} />
-            <Route exact path="/coach-assessment" component={CoachAssessmentPage} />
-            <Route exact path="/radar" component={RadarPage} />
-            <Route exact path="/athlete/:id" component={AthleteAssessments} />
+            <Suspense fallback={null}>
+              <Switch>
+                {/* Redirect from root */}
+                <Route exact path="/" render={() => <Redirect to="/assessment" />} />
+
+                {/* Pages */}
+                <Route exact path="/athlete-list" component={AthleteList} />
+                <Route exact path="/assessment" component={AssessmentPage} />
+                <Route exact path="/coach-assessment" component={CoachAssessmentPage} />
+                <Route exact path="/radar" component={RadarPage} />
+                <Route exact path="/athlete/:id" component={AthleteAssessments} />
+              </Switch>
+            </Suspense>
           </IonRouterOutlet>
-          </Switch>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom" color="primary">
-          <IonTabButton tab="athletes" href="/athlete-list">
-            <IonIcon aria-hidden="true" icon={peopleOutline} />
-            <IonLabel>Atheletes</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab1" href="/assessment">
-            <IonIcon aria-hidden="true" icon={clipboardOutline} />
-            <IonLabel>Assessment</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/coach-assessment">
-            <IonIcon aria-hidden="true" icon={personOutline} />
-            <IonLabel>Coach Assessment</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/radar">
-            <IonIcon aria-hidden="true" icon={trailSignOutline} />
-            <IonLabel>Radar</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+
+          <IonTabBar slot="bottom" color="primary">
+            <IonTabButton tab="athletes" href="/athlete-list">
+              <IonIcon icon={peopleOutline} />
+              <IonLabel>Athletes</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="assessment" href="/assessment">
+              <IonIcon icon={clipboardOutline} />
+              <IonLabel>Assessment</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="coach" href="/coach-assessment">
+              <IonIcon icon={personOutline} />
+              <IonLabel>Coach</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="radar" href="/radar">
+              <IonIcon icon={trailSignOutline} />
+              <IonLabel>Radar</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+
+        </IonTabs>
+      </IonReactRouter>
     </AssessmentProvider>
   </IonApp>
 );
