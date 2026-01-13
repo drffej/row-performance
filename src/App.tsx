@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { clipboardOutline, ellipse, personOutline, square, trailSignOutline, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -68,7 +68,7 @@ const App: React.FC = () => (
             <Tab3 />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/assessment" />
           </Route>
           <Route exact path="/assessment">
             <AssessmentPage />
@@ -82,15 +82,15 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/assessment">
-            <IonIcon aria-hidden="true" icon={triangle} />
+            <IonIcon aria-hidden="true" icon={clipboardOutline} />
             <IonLabel>Assessment</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/coach-assessment">
-            <IonIcon aria-hidden="true" icon={ellipse} />
+            <IonIcon aria-hidden="true" icon={personOutline} />
             <IonLabel>Coach Assessment</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/radar">
-            <IonIcon aria-hidden="true" icon={square} />
+            <IonIcon aria-hidden="true" icon={trailSignOutline} />
             <IonLabel>Radar</IonLabel>
           </IonTabButton>
         </IonTabBar>
