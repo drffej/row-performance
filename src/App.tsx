@@ -59,18 +59,15 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Switch>
-          <Route exact path="/">
-            <Redirect to="/assessment" />
-          </Route>
-          <Route exact path="/assessment">
-            <AssessmentPage />
-          </Route>
-          <Route exact path="/coach-assessment">
-            <CoachAssessmentPage />
-          </Route>
-          <Route exact path="/radar">
-            <RadarPage />
-          </Route>
+          <IonRouterOutlet>
+            <Route exact path="/">
+              <Redirect to="/assessment" />
+            </Route>
+
+            <Route exact path="/assessment" component={AssessmentPage} />
+            <Route exact path="/coach-assessment" component={CoachAssessmentPage} />
+            <Route exact path="/radar" component={RadarPage} />
+          </IonRouterOutlet>
           </Switch>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
