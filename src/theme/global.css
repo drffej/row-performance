@@ -1,0 +1,13 @@
+.radar-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.radar-container {
+  width: 100%;
+  max-width: 420px;   /* 👈 desktop/tablet cap */
+  aspect-ratio: 1 / 1;
+}

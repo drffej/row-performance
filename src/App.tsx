@@ -44,11 +44,17 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { AssessmentProvider } from './state/AssessmentContext';
+import AssessmentPage from './pages/AssessmentPage';
+import CoachAssessmentPage from './pages/CoachAssessmentPage';
+import RadarPage from './pages/RadarPage';
 
 setupIonicReact();
 
 const App: React.FC = () => (
+  
   <IonApp>
+    <AssessmentProvider>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -64,23 +70,33 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/tab1" />
           </Route>
+          <Route exact path="/assessment">
+            <AssessmentPage />
+          </Route>
+          <Route exact path="/coach-assessment">
+            <CoachAssessmentPage />
+          </Route>
+          <Route exact path="/radar">
+            <RadarPage />
+          </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/assessment">
             <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonLabel>Assessment</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/coach-assessment">
             <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>Coach Assessment</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/radar">
             <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonLabel>Radar</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+    </AssessmentProvider>
   </IonApp>
 );
 
